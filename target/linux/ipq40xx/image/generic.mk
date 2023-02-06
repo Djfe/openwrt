@@ -1256,14 +1256,14 @@ endef
 TARGET_DEVICES += zyxel_nbg6617
 
 define Device/zyxel_wre6606
-	$(call Device/FitImage)
+	$(call Device/FitzImage)
 	DEVICE_VENDOR := ZyXEL
 	DEVICE_MODEL := WRE6606
 	DEVICE_DTS_CONFIG := config@4
 	SOC := qcom-ipq4018
+	KERNEL_SIZE := 4096k
 	IMAGE_SIZE := 13184k
 	IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | check-size | append-metadata
 	DEVICE_PACKAGES := -kmod-ath10k-ct kmod-ath10k-ct-smallbuffers
 endef
-# Missing DSA Setup
-#TARGET_DEVICES += zyxel_wre6606
+TARGET_DEVICES += zyxel_wre6606

@@ -11,6 +11,9 @@ ipq40xx_setup_interfaces()
 	local board="$1"
 
 	case "$board" in
+	zyxel,wre6606)
+		ucidef_set_interfaces_lan "lan"
+		;;
 	8dev,habanero-dvk|\
 	avm,fritzbox-4040|\
 	asus,rt-ac42u|\
