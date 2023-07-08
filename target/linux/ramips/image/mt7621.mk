@@ -574,6 +574,7 @@ define Device/cudy_wr1300-v1
   DEVICE_VENDOR := Cudy
   DEVICE_MODEL := WR1300
   DEVICE_VARIANT := v1
+  UIMAGE_NAME := R10
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb2 kmod-usb3 \
 	kmod-usb-ledtrig-usbport -uboot-envtools
   SUPPORTED_DEVICES += cudy,wr1300 R10
@@ -586,6 +587,10 @@ define Device/cudy_wr1300-v2
   DEVICE_VENDOR := Cudy
   DEVICE_MODEL := WR1300
   DEVICE_VARIANT := v2
+  DEVICE_ALT0_VENDOR := Cudy
+  DEVICE_ALT0_MODEL := WR1300
+  DEVICE_ALT0_VARIANT := v3
+  UIMAGE_NAME := R23
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap \
 	-uboot-envtools
   SUPPORTED_DEVICES += cudy,wr1300 R23
