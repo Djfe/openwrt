@@ -104,11 +104,16 @@
 				reg = <0xff0000 0x10000>;
 				read-only;
 
-				#address-cells = <1>;
-				#size-cells = <1>;
+				nvmem-layout {
+					compatible = "fixed-layout";
+					#address-cells = <1>;
+					#size-cells = <1>;
 
-				macaddr_bdinfo_de00: macaddr@de00 {
-					reg = <0xde00 0x6>;
+					macaddr_bdinfo_de00: macaddr@de00 {
+						compatible = "mac-base";
+						reg = <0xde00 0x6>;
+						#nvmem-cell-cells = <1>;
+					};
 				};
 			};
 		};
@@ -124,7 +129,7 @@
 		compatible = "mediatek,mt76";
 		reg = <0x0 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x0000>;
-		nvmem-cells = <&macaddr_bdinfo_de00>;
+		nvmem-cells = <&macaddr_bdinfo_de00 0>;
 		nvmem-cell-names = "mac-address";
 		ieee80211-freq-limit = <2400000 2500000>;
 
@@ -139,15 +144,14 @@
 		compatible = "mediatek,mt76";
 		reg = <0x0 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x8000>;
-		nvmem-cells = <&macaddr_bdinfo_de00>;
+		nvmem-cells = <&macaddr_bdinfo_de00 2>;
 		nvmem-cell-names = "mac-address";
-		mac-address-increment = <2>;
 		ieee80211-freq-limit = <5000000 6000000>;
 	};
 };
 
 &gmac0 {
-	nvmem-cells = <&macaddr_bdinfo_de00>;
+	nvmem-cells = <&macaddr_bdinfo_de00 0>;
 	nvmem-cell-names = "mac-address";
 };
 
@@ -156,9 +160,8 @@
 	label = "wan";
 	phy-handle = <&ethphy4>;
 
-	nvmem-cells = <&macaddr_bdinfo_de00>;
+	nvmem-cells = <&macaddr_bdinfo_de00 1>;
 	nvmem-cell-names = "mac-address";
-	mac-address-increment = <1>;
 };
 
 &mdio {
