@@ -99,9 +99,17 @@
 			};
 
 			bdinfo: partition@ff0000 {
+				compatible = "nvmem-cells";
 				label = "bdinfo";
 				reg = <0xff0000 0x10000>;
 				read-only;
+
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				macaddr_bdinfo_de00: macaddr@de00 {
+					reg = <0xde00 0x6>;
+				};
 			};
 		};
 	};
@@ -187,15 +195,5 @@
 	gpio {
 		groups = "wdt", "i2c", "jtag";
 		function = "gpio";
-	};
-};
-
-&bdinfo {
-	compatible = "nvmem-cells";
-	#address-cells = <1>;
-	#size-cells = <1>;
-
-	macaddr_bdinfo_de00: macaddr@de00 {
-		reg = <0xde00 0x6>;
 	};
 };
