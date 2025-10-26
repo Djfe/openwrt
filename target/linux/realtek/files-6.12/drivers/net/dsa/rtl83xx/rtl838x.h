@@ -1070,10 +1070,10 @@ struct rtl838x_reg {
 	void (*set_static_move_action)(int port, bool forward);
 	void (*stp_get)(struct rtl838x_switch_priv *priv, u16 msti, u32 port_state[]);
 	void (*stp_set)(struct rtl838x_switch_priv *priv, u16 msti, u32 port_state[]);
-	int  (*mac_force_mode_ctrl)(int port);
-	int  (*mac_port_ctrl)(int port);
-	int  (*l2_port_new_salrn)(int port);
-	int  (*l2_port_new_sa_fwd)(int port);
+	int (*mac_force_mode_ctrl)(int port);
+	int (*mac_port_ctrl)(int port);
+	int (*l2_port_new_salrn)(int port);
+	int (*l2_port_new_sa_fwd)(int port);
 	int (*set_ageing_time)(unsigned long msec);
 	int (*get_mirror_config)(struct rtldsa_mirror_config *config, int group, int port);
 	u64 (*read_l2_entry_using_hash)(u32 hash, u32 position, struct rtl838x_l2_entry *e);
