@@ -1637,6 +1637,11 @@ static void rtl839x_set_receive_management_action(int port, rma_ctrl_t type, act
 	}
 }
 
+static void rtldsa_839x_enable_phy_polling(void)
+{
+	sw_w32_mask(0, BIT(7), RTL839X_SMI_GLB_CTRL);
+}
+
 const struct rtl838x_reg rtl839x_reg = {
 	.mask_port_reg_be = rtl839x_mask_port_reg_be,
 	.set_port_reg_be = rtl839x_set_port_reg_be,
@@ -1714,4 +1719,5 @@ const struct rtl838x_reg rtl839x_reg = {
 	.set_distribution_algorithm = rtl839x_set_distribution_algorithm,
 	.set_receive_management_action = rtl839x_set_receive_management_action,
 	.print_matrix = rtl839x_print_matrix,
+	.enable_phy_polling = rtldsa_839x_enable_phy_polling,
 };
