@@ -1583,6 +1583,14 @@ static void rtldsa_931x_led_init(struct rtl838x_switch_priv *priv)
 		dev_dbg(dev, "%08x: %08x\n", 0xbb000600 + i * 4, sw_r32(0x0600 + i * 4));
 }
 
+static void rtldsa_931x_vlan_info_setup(struct rtl838x_vlan_info *info)
+{
+	rtldsa_838x_vlan_info_setup(info);
+	info->if_id = 0;
+	info->multicast_grp_mask = 0;
+	info->l2_tunnel_list_id = -1;
+}
+
 const struct rtl838x_reg rtl931x_reg = {
 	.mask_port_reg_be = rtl839x_mask_port_reg_be,
 	.set_port_reg_be = rtl839x_set_port_reg_be,
@@ -1648,4 +1656,5 @@ const struct rtl838x_reg rtl931x_reg = {
 	.enable_flood = rtldsa_931x_enable_flood,
 	.set_receive_management_action = rtldsa_931x_set_receive_management_action,
 	.print_matrix = rtl931x_print_matrix,
+	.vlan_info_setup = rtldsa_931x_vlan_info_setup,
 };

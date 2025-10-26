@@ -362,16 +362,7 @@ static void rtl83xx_vlan_setup(struct rtl838x_switch_priv *priv)
 	pr_info("UNKNOWN_MC_PMASK: %016llx\n", priv->r->read_mcast_pmask(UNKNOWN_MC_PMASK));
 	priv->r->vlan_profile_dump(0);
 
-	info.fid = 0;			/* Default Forwarding ID / MSTI */
-	info.hash_uc_fid = false;	/* Do not build the L2 lookup hash with FID, but VID */
-	info.hash_mc_fid = false;	/* Do the same for Multicast packets */
-	info.profile_id = 0;		/* Use default Vlan Profile 0 */
-	info.member_ports = 0;		/* Initially no port members */
-	if (priv->family_id == RTL9310_FAMILY_ID) {
-		info.if_id = 0;
-		info.multicast_grp_mask = 0;
-		info.l2_tunnel_list_id = -1;
-	}
+	priv->r->vlan_info_setup(&info);
 
 	/* Initialize normal VLANs 1-4095 */
 	for (int i = 1; i < MAX_VLANS; i ++)

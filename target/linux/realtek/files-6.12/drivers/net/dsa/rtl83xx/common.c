@@ -60,6 +60,15 @@ int rtl83xx_port_get_stp_state(struct rtl838x_switch_priv *priv, int port)
 	return (port_state[index] >> bit) & 3;
 }
 
+void rtldsa_838x_vlan_info_setup(struct rtl838x_vlan_info *info)
+{
+	info->fid = 0;			/* Default Forwarding ID / MSTI */
+	info->hash_uc_fid = false;	/* Do not build the L2 lookup hash with FID, but VID */
+	info->hash_mc_fid = false;	/* Do the same for Multicast packets */
+	info->profile_id = 0;		/* Use default Vlan Profile 0 */
+	info->member_ports = 0;		/* Initially no port members */
+}
+
 static struct table_reg rtl838x_tbl_regs[] = {
 	TBL_DESC(0x6900, 0x6908, 3, 15, 13, 1),		/* RTL8380_TBL_L2 */
 	TBL_DESC(0x6914, 0x6918, 18, 14, 12, 1),	/* RTL8380_TBL_0 */
