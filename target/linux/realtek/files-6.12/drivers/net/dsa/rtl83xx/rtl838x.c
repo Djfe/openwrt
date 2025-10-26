@@ -1668,6 +1668,20 @@ static void rtldsa_838x_enable_phy_polling(void)
 	sw_w32_mask(0, BIT(15), RTL838X_SMI_GLB_CTRL);
 }
 
+
+static rtl838x_vlan_info *rtldsa_838x_vlan_info_setup(void)
+{
+	struct rtl838x_vlan_info info;
+
+	info.fid = 0;			/* Default Forwarding ID / MSTI */
+	info.hash_uc_fid = false;	/* Do not build the L2 lookup hash with FID, but VID */
+	info.hash_mc_fid = false;	/* Do the same for Multicast packets */
+	info.profile_id = 0;		/* Use default Vlan Profile 0 */
+	info.member_ports = 0;		/* Initially no port members */
+
+	return &info;
+}
+
 const struct rtl838x_reg rtl838x_reg = {
 	.mask_port_reg_be = rtl838x_mask_port_reg,
 	.set_port_reg_be = rtl838x_set_port_reg,
@@ -1746,6 +1760,7 @@ const struct rtl838x_reg rtl838x_reg = {
 	.set_receive_management_action = rtl838x_set_receive_management_action,
 	.print_matrix = rtl838x_print_matrix,
 	.enable_phy_polling = rtldsa_838x_enable_phy_polling,
+	.vlan_info_setup = rtldsa_838x_vlan_info_setup,
 };
 
 irqreturn_t rtl838x_switch_irq(int irq, void *dev_id)

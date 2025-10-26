@@ -1116,6 +1116,7 @@ struct rtl838x_reg {
 	void (*led_init)(struct rtl838x_switch_priv *priv);
 	void (*print_matrix)(void);
 	void (*enable_phy_polling)(void);
+	rtl838x_vlan_info *(*vlan_info_setup)(void);
 };
 
 struct rtl838x_switch_priv {

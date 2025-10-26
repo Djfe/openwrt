@@ -353,7 +353,7 @@ static void rtl83xx_vlan_set_pvid(struct rtl838x_switch_priv *priv,
 /* Initialize all VLANS */
 static void rtl83xx_vlan_setup(struct rtl838x_switch_priv *priv)
 {
-	struct rtl838x_vlan_info info;
+	struct rtl838x_vlan_info *info;
 
 	pr_info("In %s\n", __func__);
 
@@ -362,20 +362,11 @@ static void rtl83xx_vlan_setup(struct rtl838x_switch_priv *priv)
 	pr_info("UNKNOWN_MC_PMASK: %016llx\n", priv->r->read_mcast_pmask(UNKNOWN_MC_PMASK));
 	priv->r->vlan_profile_dump(0);
 
-	info.fid = 0;			/* Default Forwarding ID / MSTI */
-	info.hash_uc_fid = false;	/* Do not build the L2 lookup hash with FID, but VID */
-	info.hash_mc_fid = false;	/* Do the same for Multicast packets */
-	info.profile_id = 0;		/* Use default Vlan Profile 0 */
-	info.member_ports = 0;		/* Initially no port members */
-	if (priv->family_id == RTL9310_FAMILY_ID) {
-		info.if_id = 0;
-		info.multicast_grp_mask = 0;
-		info.l2_tunnel_list_id = -1;
-	}
+	info = priv->r->vlan_info_setup();
 
 	/* Initialize normal VLANs 1-4095 */
 	for (int i = 1; i < MAX_VLANS; i ++)
-		priv->r->vlan_set_tagged(i, &info);
+		priv->r->vlan_set_tagged(i, info);
 
 	/*
 	 * Initialize the special VLAN 0 and reset PVIDs. The CPU port PVID
@@ -386,9 +377,9 @@ static void rtl83xx_vlan_setup(struct rtl838x_switch_priv *priv)
 	 */
 	for (int i = 0; i <= priv->cpu_port; i++) {
 		rtl83xx_vlan_set_pvid(priv, i, 0);
-		info.member_ports |= BIT_ULL(i);
+		info->member_ports |= BIT_ULL(i);
 	}
-	priv->r->vlan_set_tagged(0, &info);
+	priv->r->vlan_set_tagged(0, info);
 
 	/* Set forwarding action based on inner VLAN tag */
 	for (int i = 0; i < priv->cpu_port; i++)
