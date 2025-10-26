@@ -1739,6 +1739,7 @@ const struct rtl838x_reg rtl838x_reg = {
 	.l3_setup = rtl838x_l3_setup,
 	.set_distribution_algorithm = rtl838x_set_distribution_algorithm,
 	.set_receive_management_action = rtl838x_set_receive_management_action,
+	.print_matrix = rtl838x_print_matrix,
 };
 
 irqreturn_t rtl838x_switch_irq(int irq, void *dev_id)

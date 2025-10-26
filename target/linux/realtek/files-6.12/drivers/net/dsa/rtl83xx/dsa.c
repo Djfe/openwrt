@@ -451,10 +451,7 @@ static int rtl83xx_setup(struct dsa_switch *ds)
 			priv->r->set_static_move_action(i, true);
 	}
 
-	if (priv->family_id == RTL8380_FAMILY_ID)
-		rtl838x_print_matrix();
-	else
-		rtl839x_print_matrix();
+	priv->r->print_matrix();
 
 	rtl83xx_init_stats(priv);
 	rtldsa_init_counters(priv);
@@ -519,10 +516,7 @@ static int rtl93xx_setup(struct dsa_switch *ds)
 	}
 	priv->r->traffic_set(priv->cpu_port, BIT_ULL(priv->cpu_port));
 
-	if (priv->family_id == RTL9300_FAMILY_ID)
-		rtl930x_print_matrix();
-	else if (priv->family_id == RTL9310_FAMILY_ID)
-		rtl931x_print_matrix();
+	priv->r->print_matrix();
 
 	/* TODO: Initialize statistics */
 	rtldsa_init_counters(priv);
