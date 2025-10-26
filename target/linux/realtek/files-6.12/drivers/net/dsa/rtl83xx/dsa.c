@@ -478,13 +478,10 @@ static int rtl93xx_setup(struct dsa_switch *ds)
 	pr_info("%s called\n", __func__);
 
 	/* Disable MAC polling the PHY so that we can start configuration */
-	if (priv->family_id == RTL9300_FAMILY_ID)
-		sw_w32(0, RTL930X_SMI_POLL_CTRL);
+	sw_w32(0, priv->r->smi_poll_ctrl);
 
-	if (priv->family_id == RTL9310_FAMILY_ID) {
-		sw_w32(0, RTL931X_SMI_PORT_POLLING_CTRL);
-		sw_w32(0, RTL931X_SMI_PORT_POLLING_CTRL + 4);
-	}
+	if (priv->family_id == RTL9310_FAMILY_ID)
+		sw_w32(0, priv->r->smi_poll_ctrl + 4);
 
 	/* Disable all ports except CPU port */
 	for (int i = 0; i < ds->num_ports; i++)
