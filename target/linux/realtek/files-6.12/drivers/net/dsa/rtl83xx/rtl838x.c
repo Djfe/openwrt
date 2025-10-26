@@ -1725,6 +1725,7 @@ const struct rtl838x_reg rtl838x_reg = {
 	.trk_mbr_ctr = rtl838x_trk_mbr_ctr,
 	.rma_bpdu_fld_pmask = RTL838X_RMA_BPDU_FLD_PMSK,
 	.spcl_trap_eapol_ctrl = RTL838X_SPCL_TRAP_EAPOL_CTRL,
+	.spcl_trap_switch_mac_ctrl = RTL838X_SPCL_TRAP_SWITCH_MAC_CTRL,
 	.init_eee = rtl838x_init_eee,
 	.set_mac_eee = rtldsa_838x_set_mac_eee,
 	.l2_hash_seed = rtl838x_l2_hash_seed,
