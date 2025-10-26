@@ -43,12 +43,7 @@ int rtl83xx_port_get_stp_state(struct rtl838x_switch_priv *priv, int port)
 	mutex_lock(&priv->reg_mutex);
 
 	/* For the RTL839x and following, the bits are left-aligned in the 64/128 bit field */
-	if (priv->family_id == RTL8390_FAMILY_ID)
-		pos += 12;
-	if (priv->family_id == RTL9300_FAMILY_ID)
-		pos += 3;
-	if (priv->family_id == RTL9310_FAMILY_ID)
-		pos += 8;
+	pos += priv->r->port_stp_state_related_offset;
 
 	index = n - (pos >> 4) - 1;
 	bit = (pos << 1) % 32;

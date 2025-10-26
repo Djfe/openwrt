@@ -1118,6 +1118,7 @@ struct rtl838x_reg {
 	void (*print_matrix)(void);
 	void (*enable_phy_polling)(void);
 	void (*vlan_info_setup)(struct rtl838x_vlan_info *info);
+	int port_stp_state_related_offset;
 };
 
 struct rtl838x_switch_priv {

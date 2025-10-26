@@ -1657,4 +1657,5 @@ const struct rtl838x_reg rtl931x_reg = {
 	.set_receive_management_action = rtldsa_931x_set_receive_management_action,
 	.print_matrix = rtl931x_print_matrix,
 	.vlan_info_setup = rtldsa_931x_vlan_info_setup,
+	.port_stp_state_related_offset = 8,
 };

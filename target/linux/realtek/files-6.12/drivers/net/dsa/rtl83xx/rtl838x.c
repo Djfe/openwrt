@@ -1748,6 +1748,7 @@ const struct rtl838x_reg rtl838x_reg = {
 	.print_matrix = rtl838x_print_matrix,
 	.enable_phy_polling = rtldsa_838x_enable_phy_polling,
 	.vlan_info_setup = rtldsa_838x_vlan_info_setup,
+	.port_stp_state_related_offset = 0,
 };
 
 irqreturn_t rtl838x_switch_irq(int irq, void *dev_id)

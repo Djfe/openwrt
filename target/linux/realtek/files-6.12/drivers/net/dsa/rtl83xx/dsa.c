@@ -1574,12 +1574,7 @@ void rtl83xx_port_stp_state_set(struct dsa_switch *ds, int port, u8 state)
 	/* For the RTL839x and following, the bits are left-aligned, 838x and 930x
 	 * have 64 bit fields, 839x and 931x have 128 bit fields
 	 */
-	if (priv->family_id == RTL8390_FAMILY_ID)
-		pos += 12;
-	if (priv->family_id == RTL9300_FAMILY_ID)
-		pos += 3;
-	if (priv->family_id == RTL9310_FAMILY_ID)
-		pos += 8;
+	pos += priv->r->port_stp_state_related_offset;
 
 	index = n - (pos >> 4) - 1;
 	bit = (pos << 1) % 32;
