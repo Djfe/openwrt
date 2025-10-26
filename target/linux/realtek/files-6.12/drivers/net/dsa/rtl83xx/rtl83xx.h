@@ -202,7 +202,7 @@ void rtl838x_egress_rate_queue_limit(struct rtl838x_switch_priv *priv, int port,
 				     int queue, u32 rate);
 
 int rtl8390_sds_power(int mac, int val);
-void rtl839x_pie_rule_dump(struct  pie_rule *pr);
+void rtl839x_pie_rule_dump(struct pie_rule *pr);
 void rtl839x_set_egress_queue(int port, int queue);
 
 void rtl9300_dump_debug(void);
