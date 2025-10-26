@@ -1663,6 +1663,11 @@ static void rtl838x_set_receive_management_action(int port, rma_ctrl_t type, act
 	}
 }
 
+static void rtldsa_838x_enable_phy_polling(void)
+{
+	sw_w32_mask(0, BIT(15), RTL838X_SMI_GLB_CTRL);
+}
+
 const struct rtl838x_reg rtl838x_reg = {
 	.mask_port_reg_be = rtl838x_mask_port_reg,
 	.set_port_reg_be = rtl838x_set_port_reg,
@@ -1740,6 +1745,7 @@ const struct rtl838x_reg rtl838x_reg = {
 	.set_distribution_algorithm = rtl838x_set_distribution_algorithm,
 	.set_receive_management_action = rtl838x_set_receive_management_action,
 	.print_matrix = rtl838x_print_matrix,
+	.enable_phy_polling = rtldsa_838x_enable_phy_polling,
 };
 
 irqreturn_t rtl838x_switch_irq(int irq, void *dev_id)
