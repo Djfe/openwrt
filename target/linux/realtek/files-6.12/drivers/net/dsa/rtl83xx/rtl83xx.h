@@ -192,6 +192,8 @@ void rtl931x_print_matrix(void);
 int rtl83xx_lag_add(struct dsa_switch *ds, int group, int port, struct netdev_lag_upper_info *info);
 int rtl83xx_lag_del(struct dsa_switch *ds, int group, int port);
 
+void rtldsa_838x_vlan_info_setup(struct rtl838x_vlan_info *info);
+
 void rtldsa_930x_set_receive_management_action(int port, rma_ctrl_t type, action_type_t action);
 void rtldsa_931x_set_receive_management_action(int port, rma_ctrl_t type, action_type_t action);
 
