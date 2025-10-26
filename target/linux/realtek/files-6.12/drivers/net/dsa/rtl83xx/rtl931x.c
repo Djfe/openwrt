@@ -1617,6 +1617,7 @@ const struct rtl838x_reg rtl931x_reg = {
 	.isr_port_link_sts_chg = RTL931X_ISR_PORT_LINK_STS_CHG,
 	.imr_port_link_sts_chg = RTL931X_IMR_PORT_LINK_STS_CHG,
 	/* imr_glb does not exist on RTL931X */
+	.imr_glb = -1,
 	.vlan_tables_read = rtl931x_vlan_tables_read,
 	.vlan_set_tagged = rtl931x_vlan_set_tagged,
 	.vlan_set_untagged = rtl931x_vlan_set_untagged,

@@ -1700,7 +1700,7 @@ static int __init rtl83xx_sw_probe(struct platform_device *pdev)
 	}
 
 	/* Enable interrupts for switch, on RTL931x, the IRQ is always on globally */
-	if (soc_info.family != RTL9310_FAMILY_ID)
+	if (priv->r->imr_glb != -1)
 		sw_w32(0x1, priv->r->imr_glb);
 
 	rtl83xx_get_l2aging(priv);
