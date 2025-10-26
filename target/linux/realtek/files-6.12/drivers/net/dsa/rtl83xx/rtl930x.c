@@ -2537,4 +2537,5 @@ const struct rtl838x_reg rtl930x_reg = {
 	.enable_learning = rtldsa_930x_enable_learning,
 	.enable_flood = rtldsa_930x_enable_flood,
 	.set_receive_management_action = rtldsa_930x_set_receive_management_action,
+	.print_matrix = rtl930x_print_matrix,
 };
