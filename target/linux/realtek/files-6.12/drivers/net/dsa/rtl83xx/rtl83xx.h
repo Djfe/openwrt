@@ -208,8 +208,6 @@ void rtl839x_set_egress_queue(int port, int queue);
 void rtl9300_dump_debug(void);
 void rtl930x_pie_rule_dump_raw(u32 r[]);
 
-void rtl931x_print_matrix(void);
-
 void rtldsa_930x_set_receive_management_action(int port, rma_ctrl_t type, action_type_t action);
 void rtldsa_931x_set_receive_management_action(int port, rma_ctrl_t type, action_type_t action);
 
